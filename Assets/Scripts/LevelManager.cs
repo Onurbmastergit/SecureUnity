@@ -9,10 +9,10 @@ public class LevelManager : MonoBehaviour
 {
     // Contadores de Materiais no Menu.
     public float cureMeter = 0;
-    int woodTotal = 99;
-    int stoneTotal = 99;
-    int metalTotal = 99;
-    int tecnologyTotal = 1;
+    public int woodTotal = 99;
+    public int stoneTotal = 99;
+    public int metalTotal = 99;
+    public int tecnologyTotal = 1;
     public TextMeshProUGUI woodCounter;
     public TextMeshProUGUI stoneCounter;
     public TextMeshProUGUI metalCounter;

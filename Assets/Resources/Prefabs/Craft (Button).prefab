@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5662444606741523409}
   - component: {fileID: 2293531436208878240}
   m_Layer: 5
-  m_Name: Counter (TMP)
+  m_Name: WoodCounter (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 2195245342706513148}
   - component: {fileID: 5688707948344458918}
   m_Layer: 5
-  m_Name: Counter (TMP)
+  m_Name: StoneCounter (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -432,7 +432,7 @@ GameObject:
   - component: {fileID: 8796903970756300798}
   - component: {fileID: 5258226340521016608}
   m_Layer: 5
-  m_Name: Counter (TMP)
+  m_Name: MetalCounter (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -778,7 +778,7 @@ GameObject:
   - component: {fileID: 767579849739198850}
   - component: {fileID: 1229099541788816846}
   m_Layer: 5
-  m_Name: Counter (TMP)
+  m_Name: TecnologyCounter (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -931,9 +931,9 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8692469230748659561}
   - {fileID: 2500985304228265551}
   - {fileID: 3689058806763264853}
+  - {fileID: 8692469230748659561}
   - {fileID: 1844819295130408436}
   - {fileID: 760358563485810177}
   - {fileID: 8304268190535552398}
@@ -1115,7 +1115,7 @@ GameObject:
   - component: {fileID: 1855262607240798455}
   - component: {fileID: 6876149560890145043}
   m_Layer: 5
-  m_Name: Details (TMP)
+  m_Name: Info (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

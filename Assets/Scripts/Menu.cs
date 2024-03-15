@@ -14,6 +14,20 @@ public class Menu : MonoBehaviour
 
     public bool mainMenu;
     public bool isPaused;
+
+    public static Menu instance;
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     void Start()
     {
         if (menuMain != null) menuMain.SetActive(true);
