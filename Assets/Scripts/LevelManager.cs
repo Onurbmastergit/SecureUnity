@@ -42,6 +42,9 @@ public class LevelManager : MonoBehaviour
     // HUD de Cure Research.
     public Image cureMeterHud;
 
+    public int numSurvivorsGatherer;
+    public int numSurvivorsScientist;
+
     public static LevelManager instance;
     void Awake()
     {

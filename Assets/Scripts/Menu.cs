@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Menu : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Menu : MonoBehaviour
     public GameObject menuSettings;
     public GameObject menuCredits;
     public GameObject menuBuild;
+
     public GameObject menuRadio;
 
     public bool mainMenu;
@@ -112,18 +114,18 @@ public class Menu : MonoBehaviour
         menuSettings.SetActive(false);
     }
 
-    public void ButtonBuild()
-    {
-        if (!menuBuild.activeSelf) menuBuild.SetActive(true);
-        else menuBuild.SetActive(false);
-    }
-
     public void ButtonRadio()
     {
         menuRadio.SetActive(true);
         menuBuild.SetActive(false);
         LevelManager.instance.radioButton.SetActive(false);
         LevelManager.instance.buildButton.SetActive(false);
+    }
+
+    public void ButtonBuild()
+    {
+        if (!menuBuild.activeSelf) menuBuild.SetActive(true);
+        else menuBuild.SetActive(false);
     }
 
     public void ButtonQuit()

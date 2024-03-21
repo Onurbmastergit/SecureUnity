@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\LevelManager.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\ScoutSystem.cs" />
     <Compile Include="Assets\Scripts\BuildSystem.cs" />
     <Compile Include="Assets\Scripts\Menu.cs" />
   </ItemGroup>
