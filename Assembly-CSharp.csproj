@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\ScoutSystem.cs" />
     <Compile Include="Assets\Scripts\BuildSystem.cs" />
     <Compile Include="Assets\Scripts\Menu.cs" />
+    <Compile Include="Assets\Scripts\PlayerMovement.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Settings\TextMesh Pro\Shaders\TMPro.cginc" />
