@@ -32,6 +32,8 @@ public class Build
 
 public class BuildSystem : MonoBehaviour
 {
+    #region Variables
+
     public GameObject barricada;
     public GameObject arame;
     public GameObject mina;
@@ -53,10 +55,28 @@ public class BuildSystem : MonoBehaviour
     public GameObject buildingPrefab;
     bool building;
 
+    #endregion
+
+    #region Initialization
+
     void Start()
     {
         buildingPrefab.SetActive(false);
 
+        CreateCraftButtons();
+    }
+
+    private void Update()
+    {
+        CraftBuild();
+    }
+
+    #endregion
+
+    #region Functions
+
+    void CreateCraftButtons()
+    {
         buildList.Add(new Build
         (
             "Barricada",
@@ -106,7 +126,7 @@ public class BuildSystem : MonoBehaviour
             6, 6, 6, 1
         ));
 
-        for ( int i = 0; i < buildList.Count; i++)
+        for (int i = 0; i < buildList.Count; i++)
         {
             int index = i;
 
@@ -118,54 +138,8 @@ public class BuildSystem : MonoBehaviour
             craftInstance.transform.Find("Stone Material").GetComponentInChildren<TextMeshProUGUI>().text = buildList[i].stoneCost.ToString();
             craftInstance.transform.Find("Metal Material").GetComponentInChildren<TextMeshProUGUI>().text = buildList[i].metalCost.ToString();
             craftInstance.transform.Find("Tecnology Material").GetComponentInChildren<TextMeshProUGUI>().text = buildList[i].tecnologyCost.ToString();
-            
+
             craftInstance.GetComponent<Button>().onClick.AddListener(() => StartCoroutine(CraftButton(index)));
-        }
-    }
-
-    private void Update()
-    {
-        if (building)
-        {
-            // Obtém a posição do mouse na tela
-            Vector3 mousePosition = Input.mousePosition;
-
-            // Converte a posição do mouse na tela para uma posição no mundo
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, Camera.main.nearClipPlane));
-
-            // Calcula a direção do raycast a partir da posição da câmera até o ponto no mundo onde o mouse está
-            Vector3 raycastDirection = worldPosition - Camera.main.transform.position;
-
-            // Faz o raycast
-            RaycastHit hit;
-            Vector3 mouseInWorld = Vector3.zero;
-            if (Physics.Raycast(Camera.main.transform.position, raycastDirection, out hit, Mathf.Infinity))
-            {
-                mouseInWorld = new Vector3(Mathf.RoundToInt(hit.point.x), 0, Mathf.RoundToInt(hit.point.z));
-                buildingPrefab.transform.position = mouseInWorld;
-            }
-
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                GameObject buildInstance = Instantiate(buildList[buildIndex].build, mouseInWorld, Quaternion.identity);
-
-                // Atualiza nova quantidade de Recursos apos instancia
-                LevelManager.instance.woodTotal -= buildList[buildIndex].woodCost;
-                LevelManager.instance.stoneTotal -= buildList[buildIndex].stoneCost;
-                LevelManager.instance.metalTotal -= buildList[buildIndex].metalCost;
-                LevelManager.instance.woodCounter.text = LevelManager.instance.woodTotal.ToString();
-                LevelManager.instance.stoneCounter.text = LevelManager.instance.stoneTotal.ToString();
-                LevelManager.instance.metalCounter.text = LevelManager.instance.metalTotal.ToString();
-
-                buildingPrefab.SetActive(false);
-                building = false;
-            }
-
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                buildingPrefab.SetActive(false);
-                building = false;
-            }
         }
     }
 
@@ -198,4 +172,45 @@ public class BuildSystem : MonoBehaviour
         }
         yield return null;
     }
+
+    void CraftBuild()
+    {
+        if (building)
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            Vector3 mouseInWorld = Vector3.zero;
+            if (Physics.Raycast(ray, out hit))
+            {
+                mouseInWorld = new Vector3(Mathf.RoundToInt(hit.point.x), 0, Mathf.RoundToInt(hit.point.z));
+                buildingPrefab.transform.position = mouseInWorld;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                GameObject buildInstance = Instantiate(buildList[buildIndex].build, mouseInWorld, Quaternion.identity);
+
+                // Atualiza nova quantidade de Recursos apos instancia
+                LevelManager.instance.woodTotal -= buildList[buildIndex].woodCost;
+                LevelManager.instance.stoneTotal -= buildList[buildIndex].stoneCost;
+                LevelManager.instance.metalTotal -= buildList[buildIndex].metalCost;
+                LevelManager.instance.woodCounter.text = LevelManager.instance.woodTotal.ToString();
+                LevelManager.instance.stoneCounter.text = LevelManager.instance.stoneTotal.ToString();
+                LevelManager.instance.metalCounter.text = LevelManager.instance.metalTotal.ToString();
+
+                buildingPrefab.SetActive(false);
+                building = false;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                buildingPrefab.SetActive(false);
+                building = false;
+            }
+        }
+    }
+
+    #endregion
+
 }

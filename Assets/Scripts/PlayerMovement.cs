@@ -6,7 +6,9 @@ public class PlayerMovement : MonoBehaviour
 {
     #region Variables
 
-    float moveSpeed = 5f;
+    [SerializeField] GameObject playerModel;
+
+    [SerializeField] float movementSpeed = 5f;
 
     #endregion
 
@@ -14,8 +16,33 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Vector3.right * Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime);
-        transform.Translate(Vector3.forward * Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime);
+        MovePlayer();
+        RotatePlayer();
+    }
+
+    #endregion
+
+    #region Functions
+
+    void MovePlayer()
+    {
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        Vector3 movement = new Vector3(horizontal, 0, vertical).normalized;
+
+        transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
+    }
+
+    void RotatePlayer()
+    {
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
+        }
     }
 
     #endregion
