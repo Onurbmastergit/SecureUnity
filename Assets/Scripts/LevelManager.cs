@@ -27,7 +27,7 @@ public class LevelManager : MonoBehaviour
     public int currentHour = 6;
     public TextMeshProUGUI calendar;
     public TextMeshProUGUI hourText;
-    public bool isDay = false;
+    public bool isDay = true;
     public bool dayStart;
     public bool nightStart;
     float hourDurationDay = 7.5f; // Duracao de cada hora do dia em segundos.
@@ -118,6 +118,7 @@ public class LevelManager : MonoBehaviour
             currentDay++;
             calendar.text = $"Day {currentDay}";
             currentHour = 0;
+            isDay = false;
         }
         // Atualiza o horario na HUD.
         hourText.text = $"{currentHour}:00";

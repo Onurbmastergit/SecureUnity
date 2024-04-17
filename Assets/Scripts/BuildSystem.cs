@@ -203,7 +203,7 @@ public class BuildSystem : MonoBehaviour
                 building = false;
             }
 
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Mouse1))
             {
                 buildingPrefab.SetActive(false);
                 building = false;
