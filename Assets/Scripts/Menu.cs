@@ -11,7 +11,7 @@ public class Menu : MonoBehaviour
     public GameObject menuSettings;
     public GameObject menuCredits;
     public GameObject menuBuild;
-
+    public InputControllers inputControllers;
     public GameObject menuRadio;
 
     public bool mainMenu;
@@ -32,6 +32,7 @@ public class Menu : MonoBehaviour
 
     void Start()
     {
+        inputControllers = GameObject.FindWithTag("Player").GetComponent<InputControllers>();
         if (menuMain != null) menuMain.SetActive(true);
         if (menuPause != null) menuPause.SetActive(false);
         menuSettings.SetActive(false);
@@ -124,8 +125,9 @@ public class Menu : MonoBehaviour
 
     public void ButtonBuild()
     {
+        inputControllers.build = menuBuild.activeSelf; 
         if (!menuBuild.activeSelf) menuBuild.SetActive(true);
-        else menuBuild.SetActive(false);
+        else menuBuild.SetActive(false);   
     }
 
     public void ButtonQuit()

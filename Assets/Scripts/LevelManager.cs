@@ -74,6 +74,7 @@ public class LevelManager : MonoBehaviour
     // Comanda toda a passagem de Tempo dentro do jogo.
     void TimeSystem()
     {
+        
         // Conta os Segundos em float.
         timer += Time.deltaTime;
         SunRotation();

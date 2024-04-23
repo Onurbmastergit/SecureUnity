@@ -6,7 +6,6 @@ public class PlayerAttacks : MonoBehaviour
 {
     #region Variables
 
-    [SerializeField] GameObject gun;
     [SerializeField] Transform firingPoint;
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] static float fireRate = 0.2f;
@@ -33,11 +32,11 @@ public class PlayerAttacks : MonoBehaviour
     {
         if (LevelManager.instance.isDay)
         {
-            if (gun.activeSelf) gun.SetActive(false);
+            InputControllers.pistol = false;
             return;
         }
-
-        if (!gun.activeSelf) gun.SetActive(true);
+        InputControllers.pistol = true;
+       
     }
 
     void InputManager()
